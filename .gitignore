@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CrashCourseWeb/obj/project.nuget.cache
+/CrashCourseWeb/obj/project.assets.json
+/CrashCourseWeb/obj/CrashCourseWeb.csproj.nuget.g.props
+/CrashCourseWeb/obj/CrashCourseWeb.csproj.nuget.dgspec.json
+/CrashCourseWeb/obj/Debug/net6.0/CrashCourseWeb.GeneratedMSBuildEditorConfig.editorconfig
+/CrashCourseWeb/obj/Debug/net6.0/CrashCourseWeb.csproj.AssemblyReference.cache
+/CrashCourseWeb/obj/Debug/net6.0/CrashCourseWeb.assets.cache
+/.vs/CrashCourseWeb/v17/.suo
+/.vs/CrashCourseWeb/FileContentIndex/9755847c-bd72-47ee-9187-fd2aeb664cae.vsidx

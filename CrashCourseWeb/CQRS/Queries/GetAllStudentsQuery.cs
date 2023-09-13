@@ -1,27 +1,25 @@
 ﻿using CrashCourseWeb.Data;
 using CrashCourseWeb.Models;
+using CrashCourseWeb.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CrashCourseWeb.CQRS.Queries
 {
-    public class GetAllStudentsQuery : IRequest<IEnumerable<Student>>
+    public class GetAllStudentsQuery : IRequest<List<Student>>
     {
     }
-    public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, IEnumerable<Student>>
+    public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, List<Student>>
     {
-        private readonly ApplicationContext _context;
+        private readonly IStudentService _studentService;
 
-        public GetAllStudentsQueryHandler(ApplicationContext context)
+        public GetAllStudentsQueryHandler(IStudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
 
-        public async Task<IEnumerable<Student>> Handle(GetAllStudentsQuery query, CancellationToken cancellationToken)
-        {
-            var AllStudents = await _context.Students.ToListAsync();
-            return AllStudents;
-        }
+        public async Task<List<Student>> Handle(GetAllStudentsQuery query, CancellationToken cancellationToken)
+       => await _studentService.GetByFilter();
     }
 }

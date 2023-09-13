@@ -1,5 +1,6 @@
 ﻿using CrashCourseWeb.Data;
 using CrashCourseWeb.Models;
+using CrashCourseWeb.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,17 +12,16 @@ namespace CrashCourseWeb.CQRS.Queries
     }
     public class GetStudentByFirstNameQueryHandler : IRequestHandler<GetStudentByFirstNameQuery, Student>
     {
-        private readonly ApplicationContext _context;
+        readonly IStudentService _studentService;
 
-        public GetStudentByFirstNameQueryHandler(ApplicationContext context)
+        public GetStudentByFirstNameQueryHandler(IStudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
+
         public async Task<Student> Handle(GetStudentByFirstNameQuery query, CancellationToken cancellationToken)
-        {
-            var student = await _context.Students.Where(c => c.FirstName == query.FirstName).FirstOrDefaultAsync();
-       
-            return student;
-        }
+
+            => (await _studentService.GetByFilter(query.FirstName)).FirstOrDefault()!;
+
     }
 }

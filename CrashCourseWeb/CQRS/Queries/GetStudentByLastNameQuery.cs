@@ -1,5 +1,6 @@
 ﻿using CrashCourseWeb.Data;
 using CrashCourseWeb.Models;
+using CrashCourseWeb.Services;
 using MediatR;
 
 namespace CrashCourseWeb.CQRS.Queries
@@ -10,16 +11,14 @@ namespace CrashCourseWeb.CQRS.Queries
     }
     public class GetStudentByLastNameQueryHandler : IRequestHandler<GetStudentByLastNameQuery, Student>
     {
-        private readonly ApplicationContext _context;
+        readonly IStudentService _studentService;
 
-        public GetStudentByLastNameQueryHandler(ApplicationContext context)
+        public GetStudentByLastNameQueryHandler(IStudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
+
         public async Task<Student> Handle(GetStudentByLastNameQuery query, CancellationToken cancellationToken)
-        {
-            var student = _context.Students.Where(c => c.LastName == query.LastName).FirstOrDefault();
-            return student;
-        }
+        => (await _studentService.GetByFilter(query.LastName)).FirstOrDefault()!;
     }
 }

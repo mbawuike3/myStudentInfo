@@ -2,6 +2,7 @@ using CrashCourseWeb.Behaviours;
 using CrashCourseWeb.CQRS.Commands;
 using CrashCourseWeb.Data;
 using CrashCourseWeb.Extensions;
+using CrashCourseWeb.Services;
 using CrashCourseWeb.Validations;
 using FluentValidation;
 using MediatR;
@@ -25,6 +26,7 @@ builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Microsoft
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

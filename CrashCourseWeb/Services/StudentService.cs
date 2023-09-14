@@ -19,12 +19,12 @@ public class StudentService : IStudentService
         _context = context;
     }
 
-    public async Task<List<Student>> GetByFilter(string? filter = null)
+    public async Task<List<Student>> GetByFilter(string? filter)
     {
-        var students = await _context.Students
-              .Where
+        var students = await _context.Students.Where
               (x => (string.IsNullOrEmpty(filter) || x.FirstName!.ToLower().Equals(filter.ToLower()))
-              || (string.IsNullOrEmpty(filter) || x.LastName!.ToLower().Equals(filter.ToLower()))).ToListAsync();
+              || (string.IsNullOrEmpty(filter) || x.LastName!.ToLower().Equals(filter.ToLower())))
+              .ToListAsync();
         return students;
     }
 }

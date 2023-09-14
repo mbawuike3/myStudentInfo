@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Microsoft
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

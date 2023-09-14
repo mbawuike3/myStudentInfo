@@ -25,7 +25,7 @@ public class StudentValidator : AbstractValidator<CreateStudentCommand>
           .NotEmpty()
           .NotNull()
           .MaximumLength(25)
-          .Must(p => StringHelper.IsAlphabelts(p));
+          .Must(p => StringHelper.isAlphaNumeric(p));
 
         RuleFor(x => x.Tel)
             .NotEmpty()

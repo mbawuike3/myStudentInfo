@@ -17,10 +17,10 @@ namespace CrashCourseWeb.CQRS.Queries
         {
             _context = context;
         }
+
         public async Task<Student> Handle(GetStudentByFirstNameQuery query, CancellationToken cancellationToken)
         {
-            var student = await _context.Students.Where(c => c.FirstName == query.FirstName).FirstOrDefaultAsync();
-       
+            var student =await _context.Students.Where(c => c.FirstName == query.FirstName).FirstOrDefaultAsync();
             return student;
         }
     }

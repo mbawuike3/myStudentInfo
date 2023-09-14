@@ -46,8 +46,8 @@ public class StudentController : ControllerBase
     {
         var query = new GetStudentByFirstNameQuery { FirstName = firstName };
         var student = await _mediator.Send(query);
-        if (query == null)
-            return NotFound();
+        if (student == null)
+            return NotFound($"Student with firstName= {firstName} not found");
         return Ok(student);
     }
     [HttpGet("lastname/{lastName}")]

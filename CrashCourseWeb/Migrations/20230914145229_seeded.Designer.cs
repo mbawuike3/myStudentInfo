@@ -4,6 +4,7 @@ using CrashCourseWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrashCourseWeb.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230914145229_seeded")]
+    partial class seeded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace CrashCourseWeb.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c2139393-8a35-4149-9224-2e6f9222d270"),
+                            Id = new Guid("474dff0a-9189-41ef-bf66-782e44d02f6a"),
                             Email = "favourmbagwu@gmail.com",
                             FirstName = "Favour",
                             LastName = "Mbagwu",
@@ -63,23 +65,13 @@ namespace CrashCourseWeb.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b437d473-10bf-4d38-88e4-51fa0f7db8ae"),
+                            Id = new Guid("f0281b36-a65f-4f94-a7dd-e417170664bf"),
                             Email = "klaus@gmail.com",
                             FirstName = "Okorie",
                             LastName = "Kelechi",
                             Password = "klaus44",
                             Tel = "09033233772",
                             Username = "modrid68"
-                        },
-                        new
-                        {
-                            Id = new Guid("e0c21146-6f67-45d2-948d-4664f1b06deb"),
-                            Email = "chommy@gmail.com",
-                            FirstName = "Chioma",
-                            LastName = "Mbawuiwe",
-                            Password = "chomzy44",
-                            Tel = "09033260778",
-                            Username = "Chiom68"
                         });
                 });
 #pragma warning restore 612, 618

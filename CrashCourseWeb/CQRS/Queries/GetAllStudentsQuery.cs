@@ -12,7 +12,6 @@ namespace CrashCourseWeb.CQRS.Queries
     public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, IEnumerable<Student>>
     {
         private readonly ApplicationContext _context;
-
         public GetAllStudentsQueryHandler(ApplicationContext context)
         {
             _context = context;

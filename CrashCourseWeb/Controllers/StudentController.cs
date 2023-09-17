@@ -1,9 +1,11 @@
 ﻿using CrashCourseWeb.CQRS.Commands;
 using CrashCourseWeb.CQRS.Queries;
 using CrashCourseWeb.Data;
+using CrashCourseWeb.Helpers;
 using CrashCourseWeb.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CrashCourseWeb.Controllers;
 
@@ -71,4 +73,11 @@ public class StudentController : ControllerBase
         return Ok(response);
     }
 
+    [HttpPost("student-encrypt")]
+    public async Task<IActionResult>EncryptedSignup(CreateStudentCommand command)
+    {
+        string commandString = JsonConvert.SerializeObject(command);
+        string commandCipher = commandString.Encrypt();
+        return Ok(_mediator.Send(new SignUpStudentEncryptedCommand { EncryptedPayload = commandCipher }));
+    }
 }

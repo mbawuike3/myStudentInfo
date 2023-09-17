@@ -1,4 +1,5 @@
 ﻿using CrashCourseWeb.Data;
+using CrashCourseWeb.Helpers;
 using CrashCourseWeb.Models;
 using MediatR;
 
@@ -37,7 +38,7 @@ namespace CrashCourseWeb.CQRS.Commands
                 Tel = command.Tel,
                 Email = command.Email,
                 Username = command.Username,
-                Password = command.Password
+                Password = command.Password.Encrypt()
             };
 
             await _context.Students.AddAsync(student);

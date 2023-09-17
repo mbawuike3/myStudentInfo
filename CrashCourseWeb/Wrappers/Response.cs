@@ -14,6 +14,13 @@ public class Response<T>
         Message = message;
         Data = data;
     }
+    public Response(T data, string message, string code, bool succeeded)
+    {
+        Code = code;
+        Succeeded = succeeded;
+        Message = message;
+        Data = data;
+    }
     public Response(T? data)
     {
         Succeeded = true;

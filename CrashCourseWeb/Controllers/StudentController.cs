@@ -60,4 +60,15 @@ public class StudentController : ControllerBase
         return Ok(student);
     }
 
+    [HttpGet("get-password")]
+    public async Task<IActionResult>TestGetPassword(string input)
+    {
+        var response = await _mediator.Send(new GetPasswordQuery { Input = input });
+        if (response.Code.Equals("99"))
+        {
+            return BadRequest(response.Message);
+        }
+        return Ok(response);
+    }
+
 }

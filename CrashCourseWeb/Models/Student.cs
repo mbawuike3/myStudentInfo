@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CrashCourseWeb.Models;
 
-public class Student
+public class Student : Login
 {
+    [JsonIgnore]
     public Guid Id { get; set; }
     
     public string? FirstName { get; set; }
@@ -13,8 +15,6 @@ public class Student
     public string? Tel { get; set; }
     
     public string? Email { get; set; }
-    
-    public string? Username { get; set; }
-    
-    public string? Password { get; set; }
+    [JsonIgnore]
+    public string? Salt { get; set; }
 }

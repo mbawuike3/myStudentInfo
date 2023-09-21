@@ -51,4 +51,6 @@ public static class SecurityHelper
     }
     private static byte[] GetBytes(string input)
         => System.Text.Encoding.UTF8.GetBytes(input);
+
+    //public
 }

@@ -80,4 +80,10 @@ public class StudentController : ControllerBase
         string commandCipher = commandString.Encrypt();
         return Ok(_mediator.Send(new SignUpStudentEncryptedCommand { EncryptedPayload = commandCipher }));
     }
+
+    [HttpPost("register")]
+    public async Task<IActionResult>RegisterAsync([FromBody]RegisterCommand register)
+    {
+        return Ok(await _mediator.Send(register));
+    }
 }

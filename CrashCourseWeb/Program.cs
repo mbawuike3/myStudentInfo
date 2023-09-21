@@ -27,6 +27,7 @@ builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Microsoft
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

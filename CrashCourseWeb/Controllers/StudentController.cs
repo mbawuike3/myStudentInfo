@@ -35,9 +35,9 @@ public class StudentController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var query =new GetStudentByIdQuery { Id = id};
-        var student =await _mediator.Send(query);
-        if(student == null)
+        var query = new GetStudentByIdQuery { Id = id };
+        var student = await _mediator.Send(query);
+        if (student == null)
         {
             return NotFound();
         }
@@ -63,7 +63,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet("get-password")]
-    public async Task<IActionResult>TestGetPassword(string input)
+    public async Task<IActionResult> TestGetPassword(string input)
     {
         var response = await _mediator.Send(new GetPasswordQuery { Input = input });
         if (response.Code.Equals("99"))
@@ -74,7 +74,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpPost("student-encrypt")]
-    public async Task<IActionResult>EncryptedSignup(CreateStudentCommand command)
+    public async Task<IActionResult> EncryptedSignup(CreateStudentCommand command)
     {
         string commandString = JsonConvert.SerializeObject(command);
         string commandCipher = commandString.Encrypt();
@@ -82,8 +82,27 @@ public class StudentController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult>RegisterAsync([FromBody]RegisterCommand register)
+    public async Task<IActionResult> RegisterAsync([FromBody] RegisterCommand register)
     {
         return Ok(await _mediator.Send(register));
+    }
+
+    [HttpGet("username-verification")]
+    public async Task<IActionResult> UserVeriAsync(string username)
+    {
+        var response = await _mediator.Send(new UsernameVerifierQuery { Username = username });
+        bool userExists = response.Item1;
+        string message = response.Item2;
+        if (userExists)
+        {
+            return BadRequest(message);
+        }
+        return Ok(message);
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> StudentLoginAsync([FromBody] LoginQuery login)
+    {
+        return Ok(await _mediator.Send(login));
     }
 }

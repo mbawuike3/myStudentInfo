@@ -1,6 +1,7 @@
 ﻿using CrashCourseWeb.Data;
 using CrashCourseWeb.Services;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 namespace CrashCourseWeb.Models;
@@ -56,4 +57,46 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Student>
     }
 
     
+}
+
+public class LoginQuery : Login, IRequest<bool>
+{
+
+}
+
+public class LoginQueryHandler : IRequestHandler<LoginQuery, bool>
+{
+    readonly ApplicationContext _context;
+    readonly IPasswordService _passwordService;
+
+    public LoginQueryHandler(ApplicationContext context, IPasswordService passwordService)
+    {
+        _context = context;
+        _passwordService = passwordService;
+    }
+
+    public async Task<bool> Handle(LoginQuery request, CancellationToken cancellationToken)
+    {
+        //Get user by username
+        var userFromDb = await _context.Students.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(request.Username));
+        if (userFromDb == null)
+        {
+            return false;
+            //User does not exist.
+        }
+
+        string salt = userFromDb.Salt;
+        request.Password = request.Password.Trim();
+        request.Password += salt; //Salting
+        var hashedPassword = _passwordService.Encoder(request.Password); //Hash the salted password
+        if (hashedPassword.Equals(userFromDb.Password))
+        {
+            return true;
+            //Successfully login
+
+            //Return JWT
+        }
+        return false;
+        //Return incorrect password
+    }
 }

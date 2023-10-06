@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashCourse.Console", "CrashCourse.Console\CrashCourse.Console.csproj", "{8B08B968-7E14-4AFA-936C-87A2115D81BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{AB1A7B66-41A8-48E0-B7C3-A503F6483191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB1A7B66-41A8-48E0-B7C3-A503F6483191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB1A7B66-41A8-48E0-B7C3-A503F6483191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B08B968-7E14-4AFA-936C-87A2115D81BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B08B968-7E14-4AFA-936C-87A2115D81BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B08B968-7E14-4AFA-936C-87A2115D81BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B08B968-7E14-4AFA-936C-87A2115D81BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
